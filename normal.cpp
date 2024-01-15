@@ -29,21 +29,6 @@ int players()
 
     return 0;
 }
-void ui()
-{
-
-    // Actual layout of the game
-
-    cout << "            |            |            \n";
-    cout << "     " << position[0][0] << "      |     " << position[0][1] << "      |     " << position[0][2] << "      \n";
-    cout << "____________|____________|____________\n";
-    cout << "            |            |            \n";
-    cout << "     " << position[1][0] << "      |     " << position[1][1] << "      |     " << position[1][2] << "      \n";
-    cout << "____________|____________|____________\n";
-    cout << "            |            |            \n";
-    cout << "     " << position[2][0] << "      |     " << position[2][1] << "      |     " << position[2][2] << "      \n";
-    cout << "            |            |            \n";
-}
 int moves()
 {
     cin >> input;
@@ -51,8 +36,7 @@ int moves()
     // Check if the user's input is a valid position on the game board
     if (input < '1' || input > '9')
     {
-        // Input is not a valid position, display an error message
-        cout << "Invalid move!\n";
+        // Input is not a valid position, return 0
         return 0;
     }
 
@@ -82,10 +66,12 @@ int moves()
         if (token == 'X')
         {
             token = 'O';
+            cout << player2 << " it is your turn\n";
         }
         else
         {
             token = 'X';
+            cout << player1 << " it is your turn\n";
         }
         // This keeps count of moves made, it will be used to check draw
         counter++;
@@ -93,69 +79,6 @@ int moves()
 
     return 0;
 }
-void NewPage()
-{
-
-    // This is just to make the matrix of tic tac toe appear at the same position after playing the move
-    if (flag == 0)
-    {
-        // Position is not available, display an error message
-        cout << "\nInvalid move!\n";
-    }
-    if (token == 'X')
-    {
-        cout << player1 << " it is your turn";
-    }
-    else
-    {
-        cout << player2 << " it is your turn";
-    }
-    if (flag == 0)
-    {
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-    }
-    else
-    {
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-    }
-}
-
 int checkwin()
 {
     // Checking for row wins
@@ -195,9 +118,32 @@ int checkwin()
         return 0;
     }
 }
+void ui()
+{
+
+    // Actual layout of the game
+
+    cout << "            |            |            \n";
+    cout << "     " << position[0][0] << "      |     " << position[0][1] << "      |     " << position[0][2] << "      \n";
+    cout << "____________|____________|____________\n";
+    cout << "            |            |            \n";
+    cout << "     " << position[1][0] << "      |     " << position[1][1] << "      |     " << position[1][2] << "      \n";
+    cout << "____________|____________|____________\n";
+    cout << "            |            |            \n";
+    cout << "     " << position[2][0] << "      |     " << position[2][1] << "      |     " << position[2][2] << "      \n";
+    cout << "            |            |            \n";
+
+    if (token == 'X' && checkwin() == 0)
+    {
+        cout << player1 << " it is your turn\n";
+    }
+    else if (token == 'O' && checkwin() == 0)
+    {
+        cout << player2 << " it is your turn\n";
+    }
+}
 int main()
 {
-    
 
     printf("\n-------------------------------------------------------------------\n\n");
     printf("\t\t\t Tic-Tac-Toe\n");
@@ -206,13 +152,13 @@ int main()
     players();
     ui();
     moves();
+    system("cls");
 
     while (checkwin() == 0)
     {
         ui();
-        NewPage();
         moves();
-        NewPage();
+        system("cls");
     }
     ui();
     cout << "\n";
@@ -231,26 +177,4 @@ int main()
             cout << "Congrats!! " << player2 << " you won!";
         }
     }
-    // Same function as New page, but did not recall the function as result text should be above the spaces
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-    cout << "\n";
-
-    system("PAUSE");
 }
