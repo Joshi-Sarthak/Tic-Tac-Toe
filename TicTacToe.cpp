@@ -170,11 +170,12 @@ int main()
     {
         if (token == 'O')
         {
-            cout << "Congrats!! " << player1 << " you won!";
+            cout << "Congrats!! " << player1 << " you won!\n";
         }
         else
         {
-            cout << "Congrats!! " << player2 << " you won!";
+            cout << "Congrats!! " << player2 << " you won!\n";
         }
     }
+    system("PAUSE");
 }
